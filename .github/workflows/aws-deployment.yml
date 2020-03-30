@@ -60,4 +60,13 @@ jobs:
         # Build a docker container and
         # push it to ECR so that it can
         # be deployed to ECS.
-        docker-compose build -d
+        docker pull mcr.microsoft.com/windows/nanoserver:1809 -d
+        docker build -t test . -d
+
+    - name: Fill in the new image ID in the Amazon ECS task definition
+      id: task-def
+      uses: aws-actions/amazon-ecs-render-task-definition@v1
+      with:
+        task-definition: task-definition.json
+        container-name: books.api.demo
+        image: ${{ steps.build-image.outputs.image }}
