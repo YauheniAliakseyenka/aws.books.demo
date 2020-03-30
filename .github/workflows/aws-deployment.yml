@@ -51,12 +51,12 @@ jobs:
       uses: aws-actions/amazon-ecr-login@v1
 
     - name: Hello world
-      shell: pwsh
+      shell: bash
       env:
-        FIRST_NAME: "Mona"
+        FIRST_NAME: Mona
         middle_name: The
         Last_Name: Octocat
-      run: echo "$FIRST_NAME"
+      run: echo $FIRST_NAME
       
     - name: Compute image tag varibale
       id: compute-image-tag
