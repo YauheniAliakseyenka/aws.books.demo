@@ -56,7 +56,7 @@ jobs:
         FIRST_NAME: Mona
         middle_name: The
         Last_Name: Octocat
-      run: echo "$FIRST_NAME + $middle_name is  ${{ steps.login-ecr.outputs.registry }} - {{ github.sha }} "
+      run: echo $middle_name + "$FIRST_NAME + $middle_name is  ${{ steps.login-ecr.outputs.registry }} - ${{ github.sha }} "
       
     - name: Compute image tag varibale
       id: compute-image-tag
