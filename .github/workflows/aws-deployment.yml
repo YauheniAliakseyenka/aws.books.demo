@@ -53,7 +53,7 @@ jobs:
     - name: Hello world
       shell: pwsh
       env:
-        FIRST_NAME: Mona
+        FIRST_NAME: "Mona"
         middle_name: The
         Last_Name: Octocat
       run: echo "$FIRST_NAME"
