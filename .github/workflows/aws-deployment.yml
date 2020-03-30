@@ -64,4 +64,8 @@ jobs:
     - name: Tag image
       id: tag-image
       run: |
-        docker tag awsbookswebapidemo test
+        docker tag awsbookswebapidemo $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+    - name: Push to registry
+      id: push-image
+      run: |
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
