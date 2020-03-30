@@ -52,11 +52,11 @@ jobs:
 
     - name: Hello world
       shell: pwsh
-      run: echo `$middle_name`
       env:
         FIRST_NAME: Mona
         middle_name: The
         Last_Name: Octocat
+      run: echo $middle_name
       
     - name: Compute image tag varibale
       id: compute-image-tag
