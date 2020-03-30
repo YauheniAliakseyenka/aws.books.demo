@@ -57,7 +57,7 @@ jobs:
         ECR_REPOSITORY: books.containers.repository
         IMAGE_TAG: ${{ github.sha }}
       run: |
-        echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+        echo "::set-output name=image_name::test"
 
     - name: Build
       id: build-image
@@ -66,11 +66,11 @@ jobs:
     - name: Tag image
       id: tag-image
       env:
-         IMAGE_NAME: ${{ steps.compute-image-tag.outputs.name }}
+         IMAGE_NAME: ${{ steps.compute-image-tag.outputs.image_name }}
       run: docker tag awsbookswebapidemo $IMAGE_NAME
         
     - name: Push to registry
       id: push-image
       env:
-         IMAGE_NAME: ${{ steps.compute-image-tag.outputs.name }}
+         IMAGE_NAME: ${{ steps.compute-image-tag.outputs.image_name }}
       run: docker push $IMAGE_NAME
