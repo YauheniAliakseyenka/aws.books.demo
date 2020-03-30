@@ -57,7 +57,7 @@ jobs:
         ECR_REPOSITORY: books.containers.repository
         IMAGE_TAG: ${{ github.sha }}
       run: |
-        echo "::set-output name=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+        echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
 
     - name: Build
       id: build-image
