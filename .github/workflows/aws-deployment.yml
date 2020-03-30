@@ -57,7 +57,7 @@ jobs:
         ECR_REPOSITORY: books.containers.repository
         IMAGE_TAG: ${{ github.sha }}
       run: |
-        echo "::set-output name=image_name::$ECR_REGISTRY"
+        echo "::set-output name=image_name::$ECR_REGISTRY/$ECR_REPOSITORY:books.webapi.demo"
 
     - name: Build
       id: build-image
