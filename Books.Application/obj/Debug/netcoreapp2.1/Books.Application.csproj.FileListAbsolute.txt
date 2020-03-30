@@ -1,0 +1,9 @@
+D:\EBSCO\aws.books.demo\Books.Application\bin\Debug\netcoreapp2.1\Books.Application.deps.json
+D:\EBSCO\aws.books.demo\Books.Application\bin\Debug\netcoreapp2.1\Books.Application.dll
+D:\EBSCO\aws.books.demo\Books.Application\obj\Debug\netcoreapp2.1\Books.Application.csprojAssemblyReference.cache
+D:\EBSCO\aws.books.demo\Books.Application\obj\Debug\netcoreapp2.1\Books.Application.csproj.CoreCompileInputs.cache
+D:\EBSCO\aws.books.demo\Books.Application\obj\Debug\netcoreapp2.1\Books.Application.AssemblyInfoInputs.cache
+D:\EBSCO\aws.books.demo\Books.Application\obj\Debug\netcoreapp2.1\Books.Application.AssemblyInfo.cs
+D:\EBSCO\aws.books.demo\Books.Application\bin\Debug\netcoreapp2.1\Books.Application.pdb
+D:\EBSCO\aws.books.demo\Books.Application\obj\Debug\netcoreapp2.1\Books.Application.dll
+D:\EBSCO\aws.books.demo\Books.Application\obj\Debug\netcoreapp2.1\Books.Application.pdb
