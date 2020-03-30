@@ -52,7 +52,7 @@ jobs:
 
     - name: Hello world
       shell: pwsh
-      run: echo "#middle_name $middle_name"
+      run: echo `$middle_name`
       env:
         FIRST_NAME: Mona
         middle_name: The
