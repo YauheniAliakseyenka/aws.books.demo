@@ -71,5 +71,5 @@ jobs:
     - name: Push to AWS registry
       shell: bash
       env:
-        IMAGE_NAME: ${{ steps.compute-image-tag.outputs.image_name }}
+        IMAGE_NAME: ${{ steps.build-image.outputs.image_name }}
       run: docker push $IMAGE_NAME
