@@ -58,7 +58,7 @@ jobs:
         IMAGE_TAG: ${{ github.sha }}
         TEST: books.webapi.demo
       run: |
-        echo ::set-output name=image_name::"$ECR_REGISTRY/$ECR_REPOSITORY:$TEST"
+        echo ::set-output name=image_name::$ECR_REGISTRY/$ECR_REPOSITORY:$TEST
 
     - name: test
       env:
