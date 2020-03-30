@@ -61,3 +61,4 @@ jobs:
         # push it to ECR so that it can
         # be deployed to ECS.
         docker-compose build
+        docker tag awsbookswebapidemo $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
