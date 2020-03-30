@@ -70,6 +70,7 @@ jobs:
         echo ::set-output name=image_name::$ECR_REGISTRY/$ECR_REPOSITORY:$TEST
 
     - name: test
+      shell: bash
       env:
         ECR_REGISTRY: ${{ steps.compute-image-tag.outputs.image_name }}
       run: echo $ECR_REGISTRY
