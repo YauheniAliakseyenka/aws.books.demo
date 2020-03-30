@@ -49,29 +49,27 @@ jobs:
     - name: Login to Amazon ECR
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
-
-    - name: Hello world
-      shell: bash
-      env:
-        FIRST_NAME: Mona
-        middle_name: The
-        Last_Name: Octocat
-      run: echo $FIRST_NAME
       
-    - name: Compute image tag varibale
-      id: compute-image-tag
+    - name: Build, tag, and push image to Amazon ECR
+      id: build-image
       shell: bash
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: books.containers.repository
         IMAGE_TAG: ${{ github.sha }}
-        TEST: books.webapi.demo
       run: |
-        echo ::set-output name=image_name::$ECR_REGISTRY/$ECR_REPOSITORY:$TEST
-        echo test
+        docker-compose build
+        echo ::set-output name=image_name::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
 
-    - name: test
+    - name: Set tag of the image
+      shell: bash
+      id: tag-image
+      env:
+        IMAGE_NAME: ${{ steps.build-image.outputs.image_name }}
+      run : docker tag awsbookswebapidemo $IMAGE_NAME
+      
+    - name: Push to AWS registry
       shell: bash
       env:
-        ECR_REGISTRY: ${{ steps.compute-image-tag.outputs.image_name }}
-      run: echo $ECR_REGISTRY
+        IMAGE_NAME: ${{ steps.compute-image-tag.outputs.image_name }}
+      run: docker push $IMAGE_NAME
