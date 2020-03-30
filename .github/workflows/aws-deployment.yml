@@ -61,10 +61,13 @@ jobs:
         # push it to ECR so that it can
         # be deployed to ECS.
         docker-compose build
+        echo "::set-output name=image::$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
     - name: Tag image
       id: tag-image
+      env:
+        IMAGE_NAME: ${{ steps.build-image.outputs.name }}
       run: |
-        docker tag awsbookswebapidemo $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+        docker tag awsbookswebapidemo $IMAGE_NAME
     - name: Push to registry
       id: push-image
       run: |
