@@ -61,13 +61,4 @@ jobs:
         # push it to ECR so that it can
         # be deployed to ECS.
         docker-compose build
-        docker tag awsbookswebapidemo:latest $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-
-    - name: Fill in the new image ID in the Amazon ECS task definition
-      id: task-def
-      uses: aws-actions/amazon-ecs-render-task-definition@v1
-      with:
-        task-definition: task-definition.json
-        container-name: books.api.demo
-        image: ${{ steps.build-image.outputs.image }}
+        docker tag awsbookswebapidemo $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -d
