@@ -51,7 +51,7 @@ jobs:
       uses: aws-actions/amazon-ecr-login@v1
 
     - name: Hello world
-      run: echo ${#Last_Name}
+      run: echo "${{#Last_Name}} / #middle_name $middle_name"
       env:
         FIRST_NAME: Mona
         middle_name: The
