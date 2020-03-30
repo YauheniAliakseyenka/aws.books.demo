@@ -68,6 +68,7 @@ jobs:
         TEST: books.webapi.demo
       run: |
         echo ::set-output name=image_name::$ECR_REGISTRY/$ECR_REPOSITORY:$TEST
+        echo test
 
     - name: test
       shell: bash
