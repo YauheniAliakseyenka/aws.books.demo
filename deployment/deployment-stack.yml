@@ -1,7 +1,7 @@
 Description: Creating of an EC2 instance.
 
 Parameters:
-  IMAGE_NAME:
+  ImageName:
     Description: A name of the image to run.
     Type: String
 
