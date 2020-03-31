@@ -9,7 +9,7 @@ Resources:
   MainInstance:
     Type: AWS::EC2::Instance
     Properties:
-      KeyName: books.api.demo
+      KeyName: booksWebApi
       ImageId: ami-0b418580298265d5c
       InstanceType: t2.micro
       SecurityGroupIds: 
@@ -22,8 +22,8 @@ Resources:
             apt-get install docker.io -y
             apt-get install awscli
             aws ecr get-login --no-include-email --region eu-central-1
-            docker pull ${ImageName}
-            docker run -d -p 80:80 ${ImageName}
+            docker pull 221988580336.dkr.ecr.eu-central-1.amazonaws.com/books.containers.repository:6f1f0c7323e493becdc699033e52e180308ae982
+            docker run -d -p 80:80 221988580336.dkr.ecr.eu-central-1.amazonaws.com/books.containers.repository:6f1f0c7323e493becdc699033e52e180308ae982
 
   MainSecurityGroup:
     Type: AWS::EC2::SecurityGroup
