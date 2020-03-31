@@ -33,5 +33,4 @@ jobs:
       with:
         name: books-demo-stack
         template: deployment/deployment-stack.yml
-        parameter-overrides:
-          ImageName: test
+        parameter-overrides: ImageName=test
