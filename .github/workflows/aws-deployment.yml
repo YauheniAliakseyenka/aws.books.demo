@@ -31,6 +31,6 @@ jobs:
       id: deploy-infrastructure
       uses: aws-actions/aws-cloudformation-github-deploy@v1
       with:
-        name: books.demo.stack
+        name: books-demo-stack
         template: deployment/deployment-stack.yml
         parameter-overrides: ParameterKey=DockerUsername,ParameterValue=yourusername
