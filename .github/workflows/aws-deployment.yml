@@ -33,7 +33,7 @@ name: Deploy to Amazon ECS
 jobs:
   deploy:
     name: Deploy
-    runs-on: windows-latest
+    runs-on: linux-latest
 
     steps:
     - name: Checkout
@@ -66,10 +66,4 @@ jobs:
       id: tag-image
       env:
         IMAGE_NAME: ${{ steps.build-image.outputs.image_name }}
-      run : docker tag awsbookswebapidemo $IMAGE_NAME
-      
-    - name: Push to AWS registry
-      shell: bash
-      env:
-        IMAGE_NAME: ${{ steps.build-image.outputs.image_name }}
-      run: docker push $IMAGE_NAME
+      run : docker tag books.webapi $IMAGE_NAME

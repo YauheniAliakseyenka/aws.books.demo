@@ -2,6 +2,10 @@
   "iisSettings": {
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
+    "iis": {
+      "applicationUrl": "http://localhost/AWS.Books.WebAPI.Demo",
+      "sslPort": 0
+    },
     "iisExpress": {
       "applicationUrl": "http://localhost:57997",
       "sslPort": 0
@@ -27,7 +31,7 @@
       "applicationUrl": "http://localhost:5000"
     },
     "Docker": {
-      "commandName": "Docker",
+      "commandName": "Executable",
       "launchBrowser": true,
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/api"
     }

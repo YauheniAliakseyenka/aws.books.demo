@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AWS.Books.WebAPI.Demo.Controllers
 {
-    [Produces("application/json")]
     [Route("api/book")]
     public class BookController : Controller
     {
@@ -19,6 +18,13 @@ namespace AWS.Books.WebAPI.Demo.Controllers
             _bookService = bookService;
         }
 
+        [Route("check")]
+        public string Get()
+        {
+            return "Working";
+        }
+
+        [Produces("application/json")]
         [Route("{isbn}")]
         public async Task<Book> Get(string isbn)
         {

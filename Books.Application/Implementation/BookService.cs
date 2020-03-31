@@ -32,7 +32,7 @@ namespace Books.Application.Implementation
         {
             if (from == null || !from.Any())
             {
-                return null;
+                return new Book();
             }
 
             return new Book

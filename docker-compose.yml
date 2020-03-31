@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   aws.books.webapi.demo:
-    image: ${DOCKER_REGISTRY-}awsbookswebapidemo
+    image: books.webapi
     build:
       context: .
-      dockerfile: AWS.Books.WebAPI.Demo\Dockerfile
+      dockerfile: AWS.Books.WebAPI.Demo/Dockerfile
