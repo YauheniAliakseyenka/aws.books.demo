@@ -1,0 +1,83 @@
+Description: Creating of an EC2 instance.
+
+Parameters:
+  IMAGE_NAME:
+    Description: A name of the image to run.
+    Type: String
+
+Resources:
+  MainInstance:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-0b418580298265d5c
+      InstanceType: t2.micro
+      SecurityGroupIds: 
+        - !GetAtt "MainSecurityGroup.GroupId"
+      SubnetId: !Ref Subnet
+      UserData:
+        Fn::Base64:
+            !Sub |
+                  #!/bin/bash
+                  apt-get update -y
+                  apt-get install docker.io -y
+				  apt-get install awscli
+                  aws ecr get-login --no-include-email --region eu-central-1
+                  docker pull 221988580336.dkr.ecr.eu-central-1.amazonaws.com/books.containers.repository:f9d674fa158e6c6ef76f2dde7948e438c4eedcd9
+                  docker run -d -p 80:80 ${IMAGE_NAME}
+
+  MainSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Security group for the API instances.
+      VpcId: !Ref VPC
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+          CidrIp: 0.0.0.0/0
+      SecurityGroupEgress:
+        - IpProtocol: tcp
+          FromPort: 0
+          ToPort: 65535
+          CidrIp: 0.0.0.0/0
+
+  VPC:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 192.168.0.0/16
+      EnableDnsSupport: true
+      EnableDnsHostnames: true
+
+  InternetGateway:
+    Type: AWS::EC2::InternetGateway
+  InternetGatewayAttachment:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      InternetGatewayId: !Ref InternetGateway
+      VpcId: !Ref VPC
+
+  RouteTable:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      VpcId: !Ref VPC
+  DefaultRoute:
+    Type: AWS::EC2::Route
+    DependsOn: InternetGatewayAttachment
+    Properties:
+      RouteTableId: !Ref RouteTable
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId: !Ref InternetGateway
+  
+  Subnet:
+    Type: AWS::EC2::Subnet
+    Properties:
+      VpcId: !Ref VPC
+      AvailabilityZone: !Select [ 0, !GetAZs '' ]
+      CidrBlock: 192.168.0.0/16
+      MapPublicIpOnLaunch: true
+
+   SubnetRouteTableAssociation:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      SubnetId: !Ref Subnet
+      RouteTableId: !Ref RouteTable

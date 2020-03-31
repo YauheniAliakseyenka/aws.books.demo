@@ -14,6 +14,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "aws-deploy", "aws-deploy", 
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{6C00FCC7-3754-43DD-AF12-39807BFA20D7}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "deployment", "deployment", "{C4C422F6-F5BD-4E4E-8063-BB39BBF66B84}"
+	ProjectSection(SolutionItems) = preProject
+		deployment\deployment-stack.yml = deployment\deployment-stack.yml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
